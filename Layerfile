@@ -13,6 +13,9 @@ RUN npm install -g @angular/cli
 
 COPY . .
 RUN npm install
+RUN sudo npm cache clean -f
+RUN sudo npm install -g n
+RUN sudo n stable
 RUN ng build --optimization=false
 # small hack - node doesn't persist in destination of a COPY
 RUN BACKGROUND ng serve --host 0.0.0.0 --disable-host-check
